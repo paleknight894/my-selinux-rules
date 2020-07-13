@@ -1,0 +1,11 @@
+
+module login-proc-getattr-fix 1.0;
+
+require {
+	type local_login_t;
+	type proc_t;
+	class filesystem getattr;
+}
+
+#============= local_login_t ==============
+allow local_login_t proc_t:filesystem getattr;

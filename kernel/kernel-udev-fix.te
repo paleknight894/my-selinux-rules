@@ -1,0 +1,11 @@
+
+module kernel-udev-fix 1.0;
+
+require {
+	type udev_t;
+	type kernel_t;
+	class key search;
+}
+
+#============= kernel_t ==============
+allow kernel_t udev_t:key search;

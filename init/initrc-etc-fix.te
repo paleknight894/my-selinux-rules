@@ -1,0 +1,11 @@
+
+module initrc-etc-fix 1.0;
+
+require {
+	type initrc_t;
+	type etc_t;
+	class lnk_file { create rename unlink };
+}
+
+#============= initrc_t ==============
+allow initrc_t etc_t:lnk_file { create rename unlink };

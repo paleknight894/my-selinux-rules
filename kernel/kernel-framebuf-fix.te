@@ -1,0 +1,11 @@
+
+module kernel-framebuf-fix 1.0;
+
+require {
+	type kernel_t;
+	type framebuf_device_t;
+	class chr_file { getattr setattr unlink };
+}
+
+#============= kernel_t ==============
+allow kernel_t framebuf_device_t:chr_file { getattr setattr unlink };

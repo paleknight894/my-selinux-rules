@@ -1,0 +1,19 @@
+
+module sshkeygen-locale-fix 1.0;
+
+require {
+	type locale_t;
+	type ssh_keygen_t;
+	class dir search;
+	class file read;
+	class file open;
+	class file getattr;
+	class file map;
+}
+
+#============= ssh_keygen_t ==============
+allow ssh_keygen_t locale_t:dir search;
+allow ssh_keygen_t locale_t:file read;
+allow ssh_keygen_t locale_t:file open;
+allow ssh_keygen_t locale_t:file getattr;
+allow ssh_keygen_t locale_t:file map;

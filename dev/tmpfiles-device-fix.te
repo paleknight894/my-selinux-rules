@@ -1,0 +1,11 @@
+
+module tmpfiles-device-fix 1.0;
+
+require {
+	type device_t;
+	type tmpfiles_t;
+	class chr_file setattr;
+}
+
+#============= tmpfiles_t ==============
+allow tmpfiles_t device_t:chr_file setattr;

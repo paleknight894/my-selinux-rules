@@ -1,0 +1,11 @@
+
+module kernel-disk-fix 1.0;
+
+require {
+	type kernel_t;
+	type fixed_disk_device_t;
+	class blk_file { getattr setattr unlink };
+}
+
+#============= kernel_t ==============
+allow kernel_t fixed_disk_device_t:blk_file { getattr setattr unlink };

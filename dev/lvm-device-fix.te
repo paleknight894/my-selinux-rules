@@ -1,0 +1,11 @@
+
+module lvm-device-fix 1.0;
+
+require {
+	type device_t;
+	type lvm_t;
+	class chr_file { open read write };
+}
+
+#============= lvm_t ==============
+allow lvm_t device_t:chr_file { open read write };

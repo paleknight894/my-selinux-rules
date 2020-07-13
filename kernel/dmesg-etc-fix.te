@@ -1,0 +1,11 @@
+
+module dmesg-etc-fix 1.0;
+
+require {
+	type etc_t;
+	type dmesg_t;
+	class file { getattr open read };
+}
+
+#============= dmesg_t ==============
+allow dmesg_t etc_t:file { getattr open read };

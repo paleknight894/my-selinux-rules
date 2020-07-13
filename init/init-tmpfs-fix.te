@@ -1,0 +1,15 @@
+
+module init-tmpfs-fix 1.0;
+
+require {
+	type init_t;
+	type tmpfs_t;
+	class dir {add_name search write};
+	class file {create lock open read write};
+	class fifo_file {create getattr open read write};
+}
+
+#============= init_t ==============
+allow init_t tmpfs_t:dir {add_name search write};
+allow init_t tmpfs_t:fifo_file {create getattr open read write};
+allow init_t tmpfs_t:file {create lock open read write};

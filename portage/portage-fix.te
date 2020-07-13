@@ -1,0 +1,19 @@
+
+module portage-fix 1.0;
+
+require {
+	type var_t;
+	type node_t;
+	type portage_fetch_t;
+	type portage_t;
+	class udp_socket node_bind;
+	class dir {add_name write remove_name};
+	class file {create append getattr open write setattr unlink};
+}
+
+#============= portage_fetch_t ==============
+allow portage_fetch_t var_t:dir {write add_name remove_name};
+allow portage_fetch_t var_t:file {create append getattr open write setattr unlink};
+
+#============= portage_t ==============
+allow portage_t node_t:udp_socket node_bind;

@@ -1,0 +1,16 @@
+
+module dhcpc_script-fix 1.0;
+
+require {
+	type console_device_t;
+	type dhcpc_script_t;
+	type init_t;
+	class fd use;
+	class chr_file { getattr ioctl open read write };
+	class capability sys_tty_config;
+}
+
+#============= dhcpc_script_t ==============
+allow dhcpc_script_t console_device_t:chr_file { getattr ioctl open read write };
+allow dhcpc_script_t init_t:fd use;
+allow dhcpc_script_t self:capability sys_tty_config;

@@ -1,0 +1,11 @@
+
+module init-nsfs-getattr-fix 1.0;
+
+require {
+	type nsfs_t;
+	type initrc_t;
+	class file getattr;
+}
+
+#============= initrc_t ==============
+allow initrc_t nsfs_t:file getattr;

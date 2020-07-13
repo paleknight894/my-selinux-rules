@@ -1,0 +1,14 @@
+
+module udevadm-console-fix 1.0;
+
+require {
+	type init_t;
+	type udevadm_t;
+	type console_device_t;
+	class chr_file { read write };
+	class fd use;
+}
+
+#============= udevadm_t ==============
+allow udevadm_t console_device_t:chr_file { read write };
+allow udevadm_t init_t:fd use;
