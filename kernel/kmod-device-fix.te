@@ -4,8 +4,8 @@ module kmod-device-fix 1.0;
 require {
 	type device_t;
 	type kmod_t;
-	class chr_file {write open getattr};
+	class chr_file {write open getattr read};
 }
 
 #============= kmod_t ==============
-allow kmod_t device_t:chr_file {write open getattr};
+allow kmod_t device_t:chr_file {write open getattr read};
