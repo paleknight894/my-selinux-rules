@@ -1,0 +1,23 @@
+
+module nginx-ssl-fix 1.0;
+
+require {
+	type init_t;
+	type run_init_t;
+	type nginx_t;
+	type proc_t;
+	type initrc_state_t;
+	class dir search;
+	class file { getattr open read };
+	class filesystem getattr;
+	class capability dac_read_search;
+}
+
+#============= nginx_t ==============
+allow nginx_t self:capability dac_read_search;
+
+#============= run_init_t ==============
+allow run_init_t init_t:dir search;
+allow run_init_t init_t:file { getattr open read };
+allow run_init_t initrc_state_t:file { getattr open read };
+allow run_init_t proc_t:filesystem getattr;
