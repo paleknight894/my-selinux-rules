@@ -1,0 +1,10 @@
+
+module tranceroute-packet_socket 1.0;
+
+require {
+	type traceroute_t;
+	class packet_socket map;
+}
+
+#============= traceroute_t ==============
+allow traceroute_t self:packet_socket map;
