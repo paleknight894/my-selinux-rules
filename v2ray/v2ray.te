@@ -1,0 +1,55 @@
+policy_module(v2ray,1.0.0)
+type v2ray_t;
+type v2ray_exec_t;
+type v2ray_conf_t;
+type v2ray_var_run_t;
+files_pid_file(v2ray_var_run_t)
+files_search_pids(v2ray_t)
+files_pid_filetrans(v2ray_t,v2ray_var_run_t,file)
+files_type(v2ray_conf_t)
+init_daemon_domain(v2ray_t,v2ray_exec_t)
+
+
+allow v2ray_t v2ray_var_run_t: file manage_file_perms;
+
+gen_require(`
+	type run_init_t;
+	type etc_runtime_t;
+	type bin_t;
+	type locale_t;
+	type node_t;
+	type socks_port_t;
+	type sysctl_net_t;
+	type cert_t;
+	type etc_t;
+	type http_port_t;
+	type usr_t;
+	type net_conf_t;
+')
+
+#============= run_init_t ==============
+allow run_init_t etc_runtime_t:file { getattr open read };
+
+
+
+#============= v2ray_t ==============
+allow v2ray_t bin_t:dir search;
+allow v2ray_t cert_t:file { getattr open read };
+allow v2ray_t etc_t:file { open read };
+allow v2ray_t etc_t:lnk_file { getattr read };
+allow v2ray_t http_port_t:tcp_socket name_connect;
+allow v2ray_t locale_t:file { open read };
+allow v2ray_t net_conf_t:file { getattr open read };
+allow v2ray_t node_t:tcp_socket node_bind;
+allow v2ray_t node_t:udp_socket node_bind;
+allow v2ray_t self:fifo_file { read write };
+allow v2ray_t self:process { getsched signal };
+allow v2ray_t self:tcp_socket { accept bind connect create getattr getopt listen read setopt write };
+allow v2ray_t self:udp_socket { bind connect create getattr read setopt write };
+allow v2ray_t socks_port_t:tcp_socket name_bind;
+allow v2ray_t socks_port_t:udp_socket name_bind;
+allow v2ray_t sysctl_net_t:dir search;
+allow v2ray_t sysctl_net_t:file { open read };
+allow v2ray_t usr_t:file { getattr open read };
+allow v2ray_t v2ray_conf_t:file { getattr open read };
+allow v2ray_t v2ray_exec_t:file execute_no_trans;
