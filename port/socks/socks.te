@@ -1,0 +1,3 @@
+policy_module(socks,1.0)
+type socks_port_t;
+corenet_port(socks_port_t)
